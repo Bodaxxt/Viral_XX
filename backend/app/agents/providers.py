@@ -76,10 +76,13 @@ class GeminiProvider(BaseProvider):
         if not self.api_key:
             raise ProviderError("GEMINI_API_KEY is not configured.")
 
-        url = (
-            f"https://generativelanguage.googleapis.com/v1beta/models/"
-            f"{self.model}:generateContent?key={self.api_key}"
-        )
+        candidate_models = [m for m in [self.model, "gemini-flash-lite-latest", "gemini-3.1-flash-lite", "gemini-flash-latest"] if m]
+        seen_models = []
+        unique_models = []
+        for m in candidate_models:
+            if m not in seen_models:
+                seen_models.append(m)
+                unique_models.append(m)
 
         contents = [
             {"role": "user" if m["sender"] == "user" else "model", "parts": [{"text": m["content"]}]}
@@ -89,25 +92,39 @@ class GeminiProvider(BaseProvider):
 
         tools_payload = [{"functionDeclarations": _to_gemini_functions(tool_definitions)}]
         tool_calls_executed: List[Dict[str, Any]] = []
+        selected_model = unique_models[0]
 
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             for _ in range(MAX_TOOL_ROUNDS):
-                try:
-                    resp = await client.post(url, json={
-                        "systemInstruction": {"parts": [{"text": system_prompt}]},
-                        "contents": contents,
-                        "tools": tools_payload,
-                        "generationConfig": {
-                            "temperature": 0.15,
-                            "maxOutputTokens": 1200,
-                            "candidateCount": 1,
-                        },
-                    })
-                except httpx.TimeoutException:
-                    raise ProviderTimeoutError(f"Gemini request timed out after {self.timeout}s.")
+                resp = None
+                last_err = ""
+                for m in unique_models:
+                    selected_model = m
+                    url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={self.api_key}"
+                    try:
+                        r = await client.post(url, json={
+                            "systemInstruction": {"parts": [{"text": system_prompt}]},
+                            "contents": contents,
+                            "tools": tools_payload,
+                            "generationConfig": {
+                                "temperature": 0.15,
+                                "maxOutputTokens": 1200,
+                                "candidateCount": 1,
+                            },
+                        })
+                        if r.status_code == 200:
+                            resp = r
+                            break
+                        else:
+                            last_err = f"HTTP {r.status_code}: {r.text[:80]}"
+                            logger.warning("Gemini model %s returned status %d, trying fallback...", m, r.status_code)
+                    except httpx.TimeoutException:
+                        last_err = "Timeout"
+                    except Exception as e:
+                        last_err = str(e)
 
-                if resp.status_code != 200:
-                    raise ProviderError(f"Gemini API error {resp.status_code}. Service temporarily unavailable.")
+                if resp is None:
+                    raise ProviderError(f"Gemini API error. All candidate models failed: {last_err}")
 
                 data = resp.json()
                 candidate = (data.get("candidates") or [{}])[0]
@@ -120,7 +137,7 @@ class GeminiProvider(BaseProvider):
                     return (
                         reply_text,
                         tool_calls_executed,
-                        f"Grounded: Google Gemini ({self.model}) — {len(tool_calls_executed)} tools invoked",
+                        f"Grounded: Google Gemini ({selected_model}) — {len(tool_calls_executed)} tools invoked",
                     )
 
                 tool_result_parts = []

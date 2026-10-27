@@ -46,7 +46,7 @@ class Settings(BaseSettings):
 
     # Server-side AI secrets & model configurations (Never exposed to client)
     GEMINI_API_KEY: Optional[str] = Field(default=None, repr=False)
-    GEMINI_MODEL: str = Field(default="gemini-2.0-flash")
+    GEMINI_MODEL: str = Field(default="gemini-flash-lite-latest")
     ANTHROPIC_API_KEY: Optional[str] = Field(default=None, repr=False)
     ANTHROPIC_MODEL: str = Field(default="claude-sonnet-4-5")
     OPENAI_API_KEY: Optional[str] = Field(default=None, repr=False)
