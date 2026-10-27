@@ -195,12 +195,14 @@ class AiSalesAgent {
       let lastErrText = '';
 
       for (const m of candidateModels) {
-        selectedModel = m;
-        const candidateUrl = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${apiKey}`;
+        const candidateUrl = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`;
         try {
           const res = await fetch(candidateUrl, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              'Content-Type': 'application/json',
+              'x-goog-api-key': apiKey
+            },
             body: JSON.stringify({
               systemInstruction: { parts: [{ text: systemInstruction }] },
               contents,

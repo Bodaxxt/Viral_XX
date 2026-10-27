@@ -100,12 +100,15 @@ class GeminiProvider(BaseProvider):
                 last_err = ""
                 for m in unique_models:
                     selected_model = m
-                    url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={self.api_key}"
+                    url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent"
                     try:
-                        r = await client.post(url, json={
-                            "systemInstruction": {"parts": [{"text": system_prompt}]},
-                            "contents": contents,
-                            "tools": tools_payload,
+                        r = await client.post(
+                            url,
+                            headers={"Content-Type": "application/json", "x-goog-api-key": self.api_key},
+                            json={
+                                "systemInstruction": {"parts": [{"text": system_prompt}]},
+                                "contents": contents,
+                                "tools": tools_payload,
                             "generationConfig": {
                                 "temperature": 0.15,
                                 "maxOutputTokens": 1200,
