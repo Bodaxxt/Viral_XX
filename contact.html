@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start a Project — VIRAL-X Digital Studio</title>
+  <meta name="description" content="Inquire about high-performance business websites, Google Maps optimization, AI sales automation, or customer intelligence. Direct studio communication via WhatsApp, email, or project planner.">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%236C35D9%22/><text y=%2268%22 x=%2224%22 font-size=%2254%22 font-family=%22sans-serif%22 font-weight=%22bold%22 fill=%22white%22>VX</text></svg>">
+  <style>
+    .form-status-alert {
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      display: none;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+    .form-status-alert.error {
+      background-color: #FEF2F2;
+      color: #991B1B;
+      border: 1px solid #FCA5A5;
+    }
+    .form-status-alert.info {
+      background-color: #F5F3FF;
+      color: #4C1D95;
+      border: 1px solid #DDD6FE;
+    }
+    .service-checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .service-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.75rem 1rem;
+      background: var(--color-brand-light);
+      border: 1px solid var(--color-brand-gray-light);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all var(--transition-fast);
+    }
+    .service-checkbox-label:hover {
+      border-color: var(--color-brand-violet);
+    }
+    .service-checkbox-label input:checked + span {
+      font-weight: 600;
+      color: var(--color-brand-violet);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header id="siteNav" class="site-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Viral-X Home">
+        <span class="brand-logo-mark">X</span>
+        <span>VIRAL<span class="brand-logo-accent">-X</span></span>
+        <span class="brand-region">CAI · DOH</span>
+      </a>
+
+      <nav id="navMenu" class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="portfolio.html" class="nav-link">Work</a>
+        <a href="about.html" class="nav-link">Studio</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm">Start a Project</a>
+        <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Contact Hero -->
+    <section class="section-dark section-padding" style="padding-top: calc(80px + var(--space-4xl));">
+      <div class="container">
+        <div class="eyebrow">Project Consultation</div>
+        <h1 style="max-width: 820px; margin-bottom: 1.25rem;">Let’s engineer something remarkable together.</h1>
+        <p class="text-muted" style="font-size: 1.25rem; max-width: 720px;">
+          Whether you need an authoritative corporate web flagship, a bespoke luxury e-commerce experience, Google Maps optimization, or a grounded AI sales agent, we're ready to review your goals.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Form & Direct Channels Grid -->
+    <section class="section-padding section-light">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1.3fr 0.7fr; gap: var(--space-3xl); align-items: flex-start;">
+          
+          <!-- Interactive Project Inquiry Form -->
+          <div style="background: #FFFFFF; padding: 2.5rem; border-radius: var(--radius-lg); border: 1px solid var(--color-brand-gray-light); box-shadow: var(--shadow-card);">
+            <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Project Inquiry Planner</h2>
+            <p style="color: #645E70; font-size: 0.9375rem; margin-bottom: 2rem;">
+              Fill out your project specifications below. Our leadership reviews all inquiries within 24 business hours.
+            </p>
+
+            <div id="formStatusBox" class="form-status-alert"></div>
+
+            <form id="projectInquiryForm" novalidate>
+              <!-- Name & Company -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+                <div class="form-group">
+                  <label for="clientName" class="form-label">Full Name *</label>
+                  <input type="text" id="clientName" class="form-control" placeholder="e.g. Tariq Al-Mansoor" required>
+                </div>
+                <div class="form-group">
+                  <label for="clientCompany" class="form-label">Company / Brand Name</label>
+                  <input type="text" id="clientCompany" class="form-control" placeholder="e.g. Al Noor Fine Jewelry">
+                </div>
+              </div>
+
+              <!-- Email & WhatsApp -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+                <div class="form-group">
+                  <label for="clientEmail" class="form-label">Work Email *</label>
+                  <input type="email" id="clientEmail" class="form-control" placeholder="tariq@brand.qa" required>
+                </div>
+                <div class="form-group">
+                  <label for="clientPhone" class="form-label">WhatsApp or Mobile</label>
+                  <input type="tel" id="clientPhone" class="form-control" placeholder="+974 5500 0000 or +20 100 000 0000">
+                </div>
+              </div>
+
+              <!-- Services Multi-Select -->
+              <div class="form-group">
+                <label class="form-label">Services Required (Select all that apply)</label>
+                <div class="service-checkbox-group">
+                  <label class="service-checkbox-label">
+                    <input type="checkbox" name="services" value="Premium Website" checked>
+                    <span>Premium Business Website</span>
+                  </label>
+                  <label class="service-checkbox-label">
+                    <input type="checkbox" name="services" value="Google Maps & Local Presence">
+                    <span>Google Maps & Local Presence</span>
+                  </label>
+                  <label class="service-checkbox-label">
+                    <input type="checkbox" name="services" value="AI Sales Automation">
+                    <span>AI Sales Automation Agent</span>
+                  </label>
+                  <label class="service-checkbox-label">
+                    <input type="checkbox" name="services" value="Monthly Customer Intelligence">
+                    <span>Monthly Customer Intelligence</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Budget Range & Timeline -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+                <div class="form-group">
+                  <label for="projectBudget" class="form-label">Estimated Budget Tier (USD)</label>
+                  <select id="projectBudget" class="form-control">
+                    <option value="$3,000 - $6,000">$3,000 &ndash; $6,000 (Focus Phase / Landing)</option>
+                    <option value="$6,000 - $14,000" selected>$6,000 &ndash; $14,000 (Custom Flagship Portal)</option>
+                    <option value="$14,000 - $30,000+">$14,000 &ndash; $30,000+ (Full Suite & Enterprise AI)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="projectTimeline" class="form-label">Target Launch Target</label>
+                  <select id="projectTimeline" class="form-control">
+                    <option value="Next 3-5 Weeks">Next 3 &ndash; 5 Weeks (Accelerated)</option>
+                    <option value="1-2 Months" selected>1 &ndash; 2 Months (Standard)</option>
+                    <option value="Flexible Q3/Q4">Flexible Q3 / Q4 Roadmap</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Project Brief -->
+              <div class="form-group">
+                <label for="projectBrief" class="form-label">Project Brief & Objectives *</label>
+                <textarea id="projectBrief" class="form-control" rows="4" placeholder="Tell us about your brand, current website challenges, and what success looks like..." required></textarea>
+              </div>
+
+              <!-- Submit Buttons -->
+              <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary btn-lg" style="flex: 1;">
+                  <span>Submit Inquiry to Studio</span>
+                  <span>&rarr;</span>
+                </button>
+                <button type="button" id="whatsappQuickBtn" class="btn btn-secondary btn-lg" style="flex: 1;">
+                  <span>Dispatch via WhatsApp</span>
+                </button>
+              </div>
+
+              <div style="font-size: 0.75rem; color: #8A8494; margin-top: 1rem; line-height: 1.4;">
+                <em>No secrets or unconfigured external services are executed in the client browser. Submissions are transparently routed to our studio team.</em>
+              </div>
+            </form>
+          </div>
+
+          <!-- Direct Channels & Studio Corridor Info -->
+          <div>
+            <!-- Direct WhatsApp Box -->
+            <div style="background: var(--color-brand-dark-card); color: #FFFFFF; padding: 2rem; border-radius: var(--radius-lg); border: 1px solid rgba(200, 184, 240, 0.2); margin-bottom: 2rem;">
+              <div style="font-size: 0.8125rem; color: var(--color-brand-lavender); text-transform: uppercase; font-weight: 600; margin-bottom: 0.5rem;">Instant Priority Channel</div>
+              <h3 style="font-size: 1.35rem; margin-bottom: 0.75rem; color: #FFFFFF;">Prefer a direct conversation?</h3>
+              <p style="font-size: 0.9375rem; color: #B3ADC2; margin-bottom: 1.5rem; line-height: 1.5;">
+                For confidential inquiries, NDA requests, or rapid project scoping, connect directly with our studio team on WhatsApp.
+              </p>
+              <a href="https://wa.me/201098539907?text=Hello%20Viral-X%20Studio,%20I%20would%20like%20to%20discuss%20a%20new%20project." target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="width: 100%;">
+                Open Studio WhatsApp Concierge
+              </a>
+            </div>
+
+            <!-- Regional Working Corridor -->
+            <div id="directLocations" style="background: #FFFFFF; padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--color-brand-gray-light); margin-bottom: 2rem;">
+              <h4 style="margin-bottom: 1rem;">Operating Corridor & Working Hours</h4>
+              
+              <div style="margin-bottom: 1.25rem;">
+                <div style="font-weight: 700; color: var(--color-brand-violet); font-size: 0.9375rem;">Cairo Operations</div>
+                <div style="font-size: 0.875rem; color: #555060; margin-top: 2px;">
+                  Sunday &ndash; Thursday: 09:00 &ndash; 18:00 (GMT+2)<br/>
+                  Technical & Creative Engineering Center
+                </div>
+              </div>
+
+              <div>
+                <div style="font-weight: 700; color: var(--color-brand-violet); font-size: 0.9375rem;">Doha & GCC Client Corridor</div>
+                <div style="font-size: 0.875rem; color: #555060; margin-top: 2px;">
+                  Sunday &ndash; Thursday: 10:00 &ndash; 19:00 (GMT+3)<br/>
+                  Commercial Engagements & Private Consultations
+                </div>
+              </div>
+
+              <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--color-brand-gray-light); font-size: 0.8125rem; color: #8A8494;">
+                <strong>Notice:</strong> Physical client meetings in Cairo or Doha are arranged by appointment following initial discovery review. Configurable studio contact channels will be updated upon commercial engagement.
+              </div>
+            </div>
+
+            <!-- Studio Direct Email -->
+            <div style="background: #FFFFFF; padding: 1.75rem; border-radius: var(--radius-lg); border: 1px solid var(--color-brand-gray-light);">
+              <div style="font-size: 0.8125rem; color: var(--color-brand-gray); text-transform: uppercase; font-weight: 600;">General Inquiries</div>
+              <div style="font-size: 1.1rem; font-weight: 700; margin-top: 4px;">
+                <a href="mailto:abdallahtarboo2005@gmail.com" style="color: var(--color-brand-violet);">abdallahtarboo2005@gmail.com</a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <span class="brand-logo-mark">X</span>
+            <span>VIRAL<span class="brand-logo-accent">-X</span></span>
+          </a>
+          <p style="font-size: 0.9375rem; color: #B3ADC2; line-height: 1.6;">
+            A premier creative digital studio delivering strategic design and engineering across Egypt and the Gulf.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Services</h4>
+          <div class="footer-links">
+            <a href="service-web-development.html" class="footer-link">Website Development</a>
+            <a href="service-google-maps.html" class="footer-link">Google Maps & Local Presence</a>
+            <a href="service-ai-sales.html" class="footer-link">AI Sales Automation</a>
+            <a href="service-customer-intelligence.html" class="footer-link">Customer Intelligence</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Selected Work</h4>
+          <div class="footer-links">
+            <a href="case-study-al-noor-jewelry.html" class="footer-link">Al Noor High Jewelry</a>
+            <a href="case-study-saffron-table.html" class="footer-link">The Saffron Table</a>
+            <a href="case-study-vitalis-health.html" class="footer-link">Vitalis Clinical Health</a>
+            <a href="case-study-kore-intelligence.html" class="footer-link">Kore Logic AI</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Studio</h4>
+          <div class="footer-links">
+            <a href="about.html" class="footer-link">About Viral-X</a>
+            <a href="contact.html" class="footer-link">Start a Project</a>
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+            <a href="terms.html" class="footer-link">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Viral-X Digital Studio. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="privacy.html" class="footer-link">Privacy</a>
+          <a href="terms.html" class="footer-link">Terms</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/contact-form.js"></script>
+</body>
+</html>
