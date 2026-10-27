@@ -163,8 +163,12 @@ class AiSalesAgent {
 
   async callGemini(tenant, history, currentMessage, sessionId) {
     const apiKey = process.env.GEMINI_API_KEY;
-    const model = process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite';
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    const candidateModels = [
+      process.env.GEMINI_MODEL,
+      'gemini-flash-lite-latest',
+      'gemini-3.1-flash-lite',
+      'gemini-flash-latest'
+    ].filter(Boolean);
 
     const systemInstruction = buildSystemPrompt(tenant);
     const toolCallsExecuted = [];
@@ -181,27 +185,47 @@ class AiSalesAgent {
     const tools = [{ functionDeclarations: toGeminiFunctions(TOOL_DEFINITIONS) }];
 
     let rounds = 0;
+    let selectedModel = candidateModels[0];
+
     while (rounds < MAX_TOOL_ROUNDS) {
       rounds++;
 
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: systemInstruction }] },
-          contents,
-          tools,
-          generationConfig: {
-            temperature: 0.15,
-            maxOutputTokens: 1200,
-            candidateCount: 1
-          }
-        })
-      });
+      let response = null;
+      let lastErrText = '';
 
-      if (!response.ok) {
-        const errBody = await response.text();
-        throw new Error(`Gemini API error ${response.status}: ${errBody}`);
+      for (const m of candidateModels) {
+        selectedModel = m;
+        const candidateUrl = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${apiKey}`;
+        try {
+          const res = await fetch(candidateUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              systemInstruction: { parts: [{ text: systemInstruction }] },
+              contents,
+              tools,
+              generationConfig: {
+                temperature: 0.15,
+                maxOutputTokens: 1200,
+                candidateCount: 1
+              }
+            })
+          });
+
+          if (res.ok) {
+            response = res;
+            break;
+          } else {
+            lastErrText = await res.text();
+            console.warn(`[Gemini] Model ${m} returned ${res.status}, trying next model...`);
+          }
+        } catch (e) {
+          lastErrText = e.message;
+        }
+      }
+
+      if (!response) {
+        throw new Error(`All Gemini models failed: ${lastErrText}`);
       }
 
       const data = await response.json();
@@ -223,7 +247,7 @@ class AiSalesAgent {
 
         return {
           reply: replyText,
-          grounding: `Grounded: Google Gemini (${model}) — ${toolCallsExecuted.length} tools invoked against ${tenant.name}`,
+          grounding: `Grounded: Google Gemini (${selectedModel}) — ${toolCallsExecuted.length} tools invoked against ${tenant.name}`,
           toolCalls: toolCallsExecuted,
           hasDraftOrder: latestDraft ? this.formatDraftOutput(latestDraft) : null,
           isHandoff,
