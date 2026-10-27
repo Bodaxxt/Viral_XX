@@ -10,7 +10,7 @@ const { DatabaseSync } = require('node:sqlite');
 const seedData = require('./seedData');
 const { TelemetryService } = require('../analytics/telemetryService');
 
-const DB_PATH = process.env.DATABASE_PATH || path.join(__dirname, '../../viral_x.db');
+const DB_PATH = process.env.DATABASE_PATH || (process.env.VERCEL ? path.join('/tmp', 'viral_x.db') : path.join(__dirname, '../../viral_x.db'));
 
 class DatabaseManager {
   constructor(dbPath = DB_PATH) {
