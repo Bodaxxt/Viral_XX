@@ -138,6 +138,7 @@ class AiSalesAgent {
         } catch (e) {}
       }
       agentResult = await this.orchestrateLocal(tenant, history, userMessage, sessionId);
+      agentResult.grounding = `Fallback Mode — Error: ${err.message}`;
     }
 
     // 6. Persist AI response

@@ -35,6 +35,8 @@ app.use('/api', analyticsRoutes);
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'healthy',
+    hasGeminiKey: !!process.env.GEMINI_API_KEY,
+    geminiModel: process.env.GEMINI_MODEL || 'gemini-flash-lite-latest',
     timestamp: new Date().toISOString(),
     version: '2.4.0',
     service: 'Viral-X AI Sales Agent Production Core'
