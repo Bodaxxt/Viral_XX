@@ -73,6 +73,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -396,6 +398,8 @@ ul, ol {
   letter-spacing: -0.02em;
   color: #FFFFFF;
   text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .brand-logo-mark {
@@ -500,6 +504,61 @@ ul, ol {
 
   .brand-region {
     display: none;
+  }
+
+  .nav-actions {
+    gap: 0.5rem;
+  }
+
+  /* Hide extra navbar Try button on mobile to avoid header blowout */
+  #navTryBtn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .site-nav {
+    padding: 0.75rem 0;
+  }
+
+  .nav-container {
+    gap: 0.5rem;
+  }
+
+  .brand-logo {
+    font-size: 1.15rem;
+    gap: 0.5rem;
+  }
+
+  .brand-logo-mark {
+    width: 28px;
+    height: 28px;
+    font-size: 0.95rem;
+  }
+
+  .nav-actions .btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .hero-title {
+    font-size: 2.15rem !important;
+    line-height: 1.18 !important;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem !important;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }
 
