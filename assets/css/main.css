@@ -1775,3 +1775,81 @@ ul, ol {
   }
 }
 
+/* ==========================================================================
+   BILINGUAL (ARABIC / ENGLISH) TOGGLE & LUXURY GULF TYPOGRAPHY
+   ========================================================================== */
+
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(200, 184, 240, 0.08);
+  border: 1px solid rgba(200, 184, 240, 0.25);
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.75rem;
+  color: #D1CCDB;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.lang-toggle-btn:hover {
+  background: rgba(200, 184, 240, 0.16);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #FFFFFF;
+}
+
+.lang-toggle-btn .lang-opt {
+  transition: color var(--transition-fast);
+  opacity: 0.6;
+}
+
+.lang-toggle-btn .lang-opt.active {
+  color: #A78BFA;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.lang-toggle-btn .lang-divider {
+  opacity: 0.35;
+  font-size: 0.75rem;
+}
+
+/* RTL & Arabic Typography System */
+body.ar-active, [dir="rtl"] {
+  font-family: 'IBM Plex Sans Arabic', var(--font-arabic), sans-serif !important;
+  direction: rtl;
+  text-align: right;
+}
+
+body.ar-active h1,
+body.ar-active h2,
+body.ar-active h3,
+body.ar-active .hero-title,
+body.ar-active .metric-value,
+body.ar-active .brand-logo {
+  font-family: 'IBM Plex Sans Arabic', var(--font-arabic), sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+[dir="rtl"] .brand-logo-mark {
+  margin-left: 0.75rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .brand-region {
+  margin-left: 0;
+  margin-right: 0.35rem;
+}
+
+[dir="rtl"] .nav-actions {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .hero-cta-group {
+  justify-content: flex-start;
+}
+

@@ -20,16 +20,16 @@
       </a>
 
       <nav id="navMenu" class="nav-menu" aria-label="Main Navigation">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="services.html" class="nav-link">Services</a>
-        <a href="portfolio.html" class="nav-link">Work</a>
-        <a href="about.html" class="nav-link">Studio</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="index.html" class="nav-link active" data-i18n="nav.home">Home</a>
+        <a href="services.html" class="nav-link" data-i18n="nav.services">Services</a>
+        <a href="portfolio.html" class="nav-link" data-i18n="nav.work">Work</a>
+        <a href="about.html" class="nav-link" data-i18n="nav.studio">Studio</a>
+        <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="chat.html" class="btn btn-secondary btn-sm" style="background:rgba(139,92,246,0.18);border:1.5px solid rgba(139,92,246,0.55);color:#C8B8F0;font-weight:700;" id="navTryBtn">Try the AI Demo</a>
-        <a href="contact.html" class="btn btn-primary btn-sm">Start a Project</a>
+        <a href="chat.html" class="btn btn-secondary btn-sm" style="background:rgba(139,92,246,0.18);border:1.5px solid rgba(139,92,246,0.55);color:#C8B8F0;font-weight:700;" id="navTryBtn" data-i18n="nav.tryDemo">Try the AI Demo</a>
+        <a href="contact.html" class="btn btn-primary btn-sm" data-i18n="nav.startProject">Start a Project</a>
         <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
       </div>
     </div>
@@ -42,30 +42,30 @@
       <div class="container">
         <div class="hero-grid">
           <div class="hero-content">
-            <div class="eyebrow">Creative Studio & Serious Software Engineering</div>
-            <h1 class="hero-title">We build digital experiences that move brands forward.</h1>
-            <p class="hero-subtitle">
+            <div class="eyebrow" data-i18n="hero.eyebrow">Creative Studio & Serious Software Engineering</div>
+            <h1 class="hero-title" data-i18n="hero.title">We build digital experiences that move brands forward.</h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">
               Viral-X partners with businesses in Egypt and the Gulf—especially Qatar—to build high-performance bespoke websites, optimize Google Maps local presence, engineer safe catalog-grounded AI sales systems, and extract actionable monthly customer intelligence.
             </p>
             <div class="hero-cta-group">
               <a href="chat.html" class="btn btn-primary btn-lg" id="heroChatBtn" style="background:linear-gradient(135deg,#6C35D9,#A78BFA);box-shadow:0 0 24px rgba(139,92,246,0.5);font-size:1.1rem;padding:0.9rem 2rem;">
-                <span>Try the AI Agent →</span>
+                <span data-i18n="hero.ctaAi">Try the AI Agent →</span>
               </a>
-              <a href="contact.html" class="btn btn-secondary btn-lg">Start a Project &rarr;</a>
+              <a href="contact.html" class="btn btn-secondary btn-lg" data-i18n="hero.ctaProject">Start a Project &rarr;</a>
             </div>
 
             <div class="hero-metrics">
               <div class="metric-item">
-                <span class="metric-value">4 Core</span>
-                <span class="metric-label">Integrated Capabilities</span>
+                <span class="metric-value" data-i18n="hero.metric1Val">4 Core</span>
+                <span class="metric-label" data-i18n="hero.metric1Label">Integrated Capabilities</span>
               </div>
               <div class="metric-item">
-                <span class="metric-value">Cairo & Doha</span>
-                <span class="metric-label">Regional Corridor</span>
+                <span class="metric-value" data-i18n="hero.metric2Val">Cairo & Doha</span>
+                <span class="metric-label" data-i18n="hero.metric2Label">Regional Corridor</span>
               </div>
               <div class="metric-item">
-                <span class="metric-value">100% Bespoke</span>
-                <span class="metric-label">Engineered Codebase</span>
+                <span class="metric-value" data-i18n="hero.metric3Val">100% Bespoke</span>
+                <span class="metric-label" data-i18n="hero.metric3Label">Engineered Codebase</span>
               </div>
             </div>
           </div>
@@ -692,6 +692,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="./assets/js/i18n.js"></script>
   <script src="./assets/js/main.js"></script>
   <script src="./assets/js/dashboard-demo.js"></script>
   <script src="./assets/js/galaxy.js"></script>
@@ -707,7 +708,7 @@
             text-decoration:none;
             animation:float-pulse 2.4s ease-in-out infinite;
             transition:transform 0.2s,box-shadow 0.2s;">
-    <span>Try the AI Agent</span>
+    <span data-i18n="floating.tryBtn">Try the AI Agent</span>
   </a>
   <style>
     @keyframes float-pulse {
